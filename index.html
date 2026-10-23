@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAMER BELGE // THE LEGEND</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Poppins:wght@300;600;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #08080a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Arka Plan Efekti */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, rgba(255, 0, 85, 0.05), transparent),
+                  radial-gradient(circle, rgba(20,20,30,1) 0%, rgba(5,5,5,1) 100%);
+      z-index: -1;
+    }
+
+    /* Hero Bölümü */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .badge {
+      background: rgba(255, 0, 85, 0.15);
+      border: 1px solid #ff0055;
+      color: #ff0055;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      background: linear-gradient(90deg, #fff, #ff0055, #9900ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 0, 85, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #aaa;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    /* Aura / Tehlike Metresi */
+    .aura-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px 30px;
+      border-radius: 12px;
+      display: flex;
+      gap: 30px;
+      margin-top: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .stat-item h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #ff0055;
+    }
+
+    .stat-item p {
+      font-size: 0.85rem;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    /* Kartlar Bölümü */
+    .section-title {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      margin: 80px 0 40px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .grid-container {
+      max-width: 1100px;
+      margin: 0 auto 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #ff0055, #9900ff);
+      opacity: 0;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 0, 85, 0.4);
+      box-shadow: 0 15px 35px rgba(255, 0, 85, 0.15);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    /* Buton / Racon Bölümü */
+    .quote-box {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, transparent, rgba(255,0,85,0.05), transparent);
+      margin-bottom: 50px;
+    }
+
+    .quote-box blockquote {
+      font-size: 1.8rem;
+      font-style: italic;
+      color: #eee;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .btn-action {
+      background: linear-gradient(45deg, #ff0055, #9900ff);
+      color: #fff;
+      border: none;
+      padding: 15px 35px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+      transition: 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    .btn-action:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(255, 0, 85, 0.7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .aura-box { flex-direction: column; gap: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">⚠️ TEHLİKELİ BÖLGE: YÜKSEK AURA</div>
+    <h1>TAMER BELGE</h1>
+    <p class="subtitle">Kuralları baştan yazan, ortamların atmosferini tek bakışıyla değiştiren gerçek bir Bad Boy.</p>
+
+    <div class="aura-box">
+      <div class="stat-item">
+        <h3>%99.9</h3>
+        <p>Karizma Oranı</p>
+      </div>
+      <div class="stat-item">
+        <h3>+100K</h3>
+        <p>Aura Puanı</p>
+      </div>
+      <div class="stat-item">
+        <h3>%0</h3>
+        <p>Taviz</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Özellikler -->
+  <h2 class="section-title">TAMER BELGE GERÇEKLERİ</h2>
+  <div class="grid-container">
+
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h2>Yıkıcı Bakışlar</h2>
+      <p>Ortama girdiğinde göz teması kurmak cesaret ister. Bir bakışıyla tüm ilgiyi üzerine çeker, ortamın havasını anında değiştirir.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">👑</div>
+      <h2>Kendi Kuralları Var</h2>
+      <p>Sıradan kurallarla zaman kaybetmez. Trendleri takip etmez, kendisi trend oluşturur. Kendi yolunu kendisi çizer.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <h2>Saf Özgüven</h2>
+      <p>Yürümesi, konuşması, duruşu... Çaba sarf etmesine gerek kalmadan etrafına doğal bir liderlik ve karizma yayar.</p>
+    </div>
+
+  </div>
+
+  <!-- Racon Bölümü -->
+  <section class="quote-box">
+    <blockquote id="raconText">"Tamer Belge bir ortama girdiğinde ortam ona uyar, o ortama değil."</blockquote>
+    <button class="btn-action" onclick="yeniRacon()">YENİ RACON YÜKLE 🔥</button>
+  </section>
+
+  <footer>
+    DESIGNED FOR THE ONE AND ONLY: TAMER BELGE © 2026
+  </footer>
+
+  <script>
+    const raconlar = [
+      '"Tamer Belge bir ortama girdiğinde ortam ona uyar, o ortama değil."',
+      '"Sessizliği bile etraftakileri tedirgin etmeye yeter."',
+      '"Kural tanımamak onun doğasında var."',
+      '"Aura sözlük anlamı: Tamer Belge."',
+      '"Ona yetişmek için koşma, sadece izle."'
+    ];
+
+    function yeniRacon() {
+      const random = Math.floor(Math.random() * raconlar.length);
+      document.getElementById('raconText').innerText = raconlar[random];
+    }
+  </script>
+</body>
+</html>
