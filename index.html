@@ -1,298 +1,711 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAMER BELGE // THE LEGEND</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Poppins:wght@300;600;800&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMER BELGE | The Ultimate Bad Boy Legend</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Orbitron & Rajdhani & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonRed: '#ff003c',
+                        neonBlue: '#00f0ff',
+                        neonGold: '#ffd700',
+                        darkBg: '#0a0a0a',
+                        cardBg: 'rgba(18, 18, 24, 0.85)',
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-red': '0 0 20px rgba(255, 0, 60, 0.6), 0 0 40px rgba(255, 0, 60, 0.3)',
+                        'neon-blue': '0 0 20px rgba(0, 240, 255, 0.6), 0 0 40px rgba(0, 240, 255, 0.3)',
+                        'neon-gold': '0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    <style>
+        /* Custom Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff003c;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
 
-    body {
-      background-color: #08080a;
-      color: #fff;
-      overflow-x: hidden;
-    }
+        /* Scanline Overlay Effect */
+        .scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
 
-    /* Arka Plan Efekti */
-    .bg-grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(to bottom, rgba(255, 0, 85, 0.05), transparent),
-                  radial-gradient(circle, rgba(20,20,30,1) 0%, rgba(5,5,5,1) 100%);
-      z-index: -1;
-    }
+        /* Glitch Animation Effect */
+        .glitch {
+            position: relative;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 0, 60, 0.8);
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip: rect(0, 0, 0, 0);
+        }
+        .glitch::before {
+            left: -2px;
+            text-shadow: 2px 0 #00f0ff;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: 2px;
+            text-shadow: -2px 0 #ff003c;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
 
-    /* Hero Bölümü */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-    }
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(20px, 9999px, 15px, 0); }
+            20% { clip: rect(50px, 9999px, 80px, 0); }
+            40% { clip: rect(10px, 9999px, 40px, 0); }
+            60% { clip: rect(70px, 9999px, 90px, 0); }
+            80% { clip: rect(30px, 9999px, 10px, 0); }
+            100% { clip: rect(85px, 9999px, 60px, 0); }
+        }
 
-    .badge {
-      background: rgba(255, 0, 85, 0.15);
-      border: 1px solid #ff0055;
-      color: #ff0055;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
-    }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(15px, 9999px, 60px, 0); }
+            20% { clip: rect(80px, 9999px, 10px, 0); }
+            40% { clip: rect(35px, 9999px, 75px, 0); }
+            60% { clip: rect(90px, 9999px, 20px, 0); }
+            80% { clip: rect(5px, 9999px, 50px, 0); }
+            100% { clip: rect(40px, 9999px, 85px, 0); }
+        }
 
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 4rem;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      background: linear-gradient(90deg, #fff, #ff0055, #9900ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 0, 85, 0.3);
-      margin-bottom: 10px;
-    }
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(15, 15, 22, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 0, 60, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    .subtitle {
-      font-size: 1.2rem;
-      color: #aaa;
-      max-width: 600px;
-      margin-bottom: 30px;
-    }
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.3);
+        }
 
-    /* Aura / Tehlike Metresi */
-    .aura-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 20px 30px;
-      border-radius: 12px;
-      display: flex;
-      gap: 30px;
-      margin-top: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
+        /* Audio Equalizer Bars */
+        .eq-bar {
+            animation: bounce 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes bounce {
+            0% { height: 10%; }
+            100% { height: 100%; }
+        }
 
-    .stat-item h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      color: #ff0055;
-    }
+        /* Custom Button Cyber Cutouts */
+        .cyber-btn {
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+            transition: all 0.2s ease;
+        }
+        .cyber-btn:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
 
-    .stat-item p {
-      font-size: 0.85rem;
-      color: #888;
-      text-transform: uppercase;
-    }
-
-    /* Kartlar Bölümü */
-    .section-title {
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      margin: 80px 0 40px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .grid-container {
-      max-width: 1100px;
-      margin: 0 auto 100px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 30px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #ff0055, #9900ff);
-      opacity: 0;
-      transition: 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 0, 85, 0.4);
-      box-shadow: 0 15px 35px rgba(255, 0, 85, 0.15);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-    }
-
-    .card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: #aaa;
-      line-height: 1.6;
-    }
-
-    /* Buton / Racon Bölümü */
-    .quote-box {
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(180deg, transparent, rgba(255,0,85,0.05), transparent);
-      margin-bottom: 50px;
-    }
-
-    .quote-box blockquote {
-      font-size: 1.8rem;
-      font-style: italic;
-      color: #eee;
-      max-width: 800px;
-      margin: 0 auto 20px;
-    }
-
-    .btn-action {
-      background: linear-gradient(45deg, #ff0055, #9900ff);
-      color: #fff;
-      border: none;
-      padding: 15px 35px;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-      transition: 0.3s ease;
-      letter-spacing: 1px;
-    }
-
-    .btn-action:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 35px rgba(255, 0, 85, 0.7);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #555;
-      font-size: 0.8rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      h1 { font-size: 2.5rem; }
-      .aura-box { flex-direction: column; gap: 15px; }
-    }
-  </style>
+        /* Background Grid */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-darkBg text-gray-100 font-sans selection:bg-neonRed selection:text-white relative overflow-x-hidden">
 
-  <div class="bg-grid"></div>
+    <!-- Scanline overlay -->
+    <div class="fixed inset-0 scanlines z-40 opacity-40 pointer-events-none"></div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="badge">⚠️ TEHLİKELİ BÖLGE: YÜKSEK AURA</div>
-    <h1>TAMER BELGE</h1>
-    <p class="subtitle">Kuralları baştan yazan, ortamların atmosferini tek bakışıyla değiştiren gerçek bir Bad Boy.</p>
+    <!-- Canvas Interactive Grid Background -->
+    <canvas id="bgCanvas" class="fixed inset-0 z-0 pointer-events-none opacity-30"></canvas>
 
-    <div class="aura-box">
-      <div class="stat-item">
-        <h3>%99.9</h3>
-        <p>Karizma Oranı</p>
-      </div>
-      <div class="stat-item">
-        <h3>+100K</h3>
-        <p>Aura Puanı</p>
-      </div>
-      <div class="stat-item">
-        <h3>%0</h3>
-        <p>Taviz</p>
-      </div>
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-darkBg/80 backdrop-blur-md border-b border-neonRed/30 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-orbitron font-black text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-neonRed via-white to-neonBlue flex items-center gap-2">
+                <i class="fa-solid font-bold fa-bolt text-neonRed"></i> TAMER<span class="text-neonRed">.BELGE</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8 font-rajdhani font-bold text-lg tracking-widest text-gray-300">
+                <a href="#aura" class="hover:text-neonRed transition-colors duration-200 uppercase">Aura & Güç</a>
+                <a href="#manifesto" class="hover:text-neonBlue transition-colors duration-200 uppercase">Bad Boy Kuralları</a>
+                <a href="#analyzer" class="hover:text-neonGold transition-colors duration-200 uppercase">Aura Ölçer</a>
+                <a href="#quotes" class="hover:text-neonRed transition-colors duration-200 uppercase">Racon Sözler</a>
+                <a href="#gallery" class="hover:text-neonBlue transition-colors duration-200 uppercase">Galeri</a>
+            </div>
+
+            <!-- Sound Visualizer Indicator Badge -->
+            <div class="flex items-center gap-2 bg-black/60 px-3 py-1.5 rounded-full border border-neonRed/40">
+                <div class="flex items-end gap-1 h-4 w-6">
+                    <span class="eq-bar w-1 bg-neonRed rounded-full" style="animation-delay: 0.1s"></span>
+                    <span class="eq-bar w-1 bg-neonBlue rounded-full" style="animation-delay: 0.3s"></span>
+                    <span class="eq-bar w-1 bg-neonGold rounded-full" style="animation-delay: 0.2s"></span>
+                    <span class="eq-bar w-1 bg-neonRed rounded-full" style="animation-delay: 0.4s"></span>
+                </div>
+                <span class="text-xs font-orbitron text-gray-300 uppercase tracking-widest hidden sm:inline">AURA: 1000%</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="aura" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-4 z-10">
+        <div class="max-w-6xl mx-auto text-center relative">
+
+            <!-- Glowing Aura Backdrop -->
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-neonRed/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+            <div class="absolute top-20 left-1/3 -translate-x-1/2 w-72 h-72 bg-neonBlue/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Bad Boy Status Badge -->
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-neonRed bg-black/80 shadow-neon-red mb-8">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neonRed opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-neonRed"></span>
+                </span>
+                <span class="font-rajdhani font-bold text-neonRed text-sm md:text-base tracking-widest uppercase">
+                    TEHLİKELİ DERECEDE KARİZMATİK &bull; KURALLARI O YAZAR
+                </span>
+            </div>
+
+            <!-- Dynamic Glitch Title -->
+            <h1 class="font-orbitron font-black text-5xl sm:text-7xl md:text-9xl tracking-tight uppercase mb-6 leading-none">
+                <span class="glitch block" data-text="TAMER BELGE">TAMER BELGE</span>
+            </h1>
+
+            <p class="font-rajdhani text-xl sm:text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto font-semibold mb-10 leading-relaxed">
+                Kuralları takip etmez, <span class="text-neonRed font-bold underline decoration-neonRed/50">kuralları koyar</span>. Sadece varlığıyla odadaki atmosferi değiştiren, bad boy enerjisinin zirve noktası.
+            </p>
+
+            <!-- Interactive Stats Dashboard -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+                <div class="glass-card p-4 rounded-xl text-center border-l-4 border-l-neonRed">
+                    <div class="font-orbitron text-2xl md:text-4xl font-bold text-neonRed">1000%</div>
+                    <div class="font-rajdhani text-sm md:text-base text-gray-400 font-bold uppercase tracking-wider">Aura Seviyesi</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center border-l-4 border-l-neonBlue">
+                    <div class="font-orbitron text-2xl md:text-4xl font-bold text-neonBlue">∞</div>
+                    <div class="font-rajdhani text-sm md:text-base text-gray-400 font-bold uppercase tracking-wider">Karizma Skoru</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center border-l-4 border-l-neonGold">
+                    <div class="font-orbitron text-2xl md:text-4xl font-bold text-neonGold">0%</div>
+                    <div class="font-rajdhani text-sm md:text-base text-gray-400 font-bold uppercase tracking-wider">Geri Adım</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center border-l-4 border-l-neonRed">
+                    <div class="font-orbitron text-2xl md:text-4xl font-bold text-white">MAX</div>
+                    <div class="font-rajdhani text-sm md:text-base text-gray-400 font-bold uppercase tracking-wider">Tehlike Faktörü</div>
+                </div>
+            </div>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#analyzer" class="cyber-btn bg-neonRed text-white font-orbitron font-bold px-8 py-4 text-lg tracking-wider flex items-center gap-3 shadow-neon-red">
+                    <i class="fa-solid fa-gauge-high"></i> AURANI ÖLÇ
+                </a>
+                <a href="#quotes" class="cyber-btn bg-transparent border-2 border-neonBlue text-neonBlue hover:bg-neonBlue hover:text-black font-orbitron font-bold px-8 py-4 text-lg tracking-wider flex items-center gap-3 shadow-neon-blue transition-all">
+                    <i class="fa-solid fa-quote-right"></i> RACON SÖZLER
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAMER'S BAD BOY MANIFESTO SECTION -->
+    <section id="manifesto" class="py-20 px-4 relative z-10 bg-black/40 border-t border-b border-neonRed/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white uppercase tracking-wider mb-4">
+                    BAD BOY <span class="text-neonRed">MANIFESTO</span>
+                </h2>
+                <div class="w-24 h-1 bg-neonRed mx-auto mb-4"></div>
+                <p class="font-rajdhani text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+                    Tamer Belge'nin dünyasında sıradan kurallar geçersizdir. İşte onu efsane kılan değişmez yasalar:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Rule 1 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-8xl font-orbitron font-black text-neonRed/10 group-hover:text-neonRed/20 transition-colors">01</div>
+                    <div class="w-14 h-14 bg-neonRed/20 border border-neonRed rounded-xl flex items-center justify-center mb-6 text-neonRed text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-2xl text-white mb-3">Kuralları O Yazar</h3>
+                    <p class="text-gray-400 leading-relaxed font-sans">
+                        Sistem onun kurallarına uyar. Tamer bir odaya girdiğinde mevcut düzen biter, onun koyduğu kurallar başlar.
+                    </p>
+                </div>
+
+                <!-- Rule 2 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-8xl font-orbitron font-black text-neonBlue/10 group-hover:text-neonBlue/20 transition-colors">02</div>
+                    <div class="w-14 h-14 bg-neonBlue/20 border border-neonBlue rounded-xl flex items-center justify-center mb-6 text-neonBlue text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-2xl text-white mb-3">Aurasıyla Yakan Adam</h3>
+                    <p class="text-gray-400 leading-relaxed font-sans">
+                        Göz teması kurmak cesaret ister. Karizmasının yüksek voltajı etrafındakilerin dengesini bozacak kadar güçlüdür.
+                    </p>
+                </div>
+
+                <!-- Rule 3 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-8xl font-orbitron font-black text-neonGold/10 group-hover:text-neonGold/20 transition-colors">03</div>
+                    <div class="w-14 h-14 bg-neonGold/20 border border-neonGold rounded-xl flex items-center justify-center mb-6 text-neonGold text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-2xl text-white mb-3">Asla Geri Adım Atmaz</h3>
+                    <p class="text-gray-400 leading-relaxed font-sans">
+                        Geri adım atmak onun lügatında yoktur. Zorluklar ve engeller sadece onun yolundaki aksiyonu artırır.
+                    </p>
+                </div>
+
+                <!-- Rule 4 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-8xl font-orbitron font-black text-neonRed/10 group-hover:text-neonRed/20 transition-colors">04</div>
+                    <div class="w-14 h-14 bg-neonRed/20 border border-neonRed rounded-xl flex items-center justify-center mb-6 text-neonRed text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-2xl text-white mb-3">Manyetik Çekim</h3>
+                    <p class="text-gray-400 leading-relaxed font-sans">
+                        Gizemi ve kendinden emin tavrı yerçekimi gibidir. Herkes onun bir sonraki hamlesini merakla bekler.
+                    </p>
+                </div>
+
+                <!-- Rule 5 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-8xl font-orbitron font-black text-neonBlue/10 group-hover:text-neonBlue/20 transition-colors">05</div>
+                    <div class="w-14 h-14 bg-neonBlue/20 border border-neonBlue rounded-xl flex items-center justify-center mb-6 text-neonBlue text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mask"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-2xl text-white mb-3">Sözsüz Dominasyon</h3>
+                    <p class="text-gray-400 leading-relaxed font-sans">
+                        Çok konuşmasına gerek kalmaz. Bir bakışı veya hafif bir tebessümü durumu kontrol altına alması için yeterlidir.
+                    </p>
+                </div>
+
+                <!-- Rule 6 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 text-8xl font-orbitron font-black text-neonGold/10 group-hover:text-neonGold/20 transition-colors">06</div>
+                    <div class="w-14 h-14 bg-neonGold/20 border border-neonGold rounded-xl flex items-center justify-center mb-6 text-neonGold text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-2xl text-white mb-3">Kusursuz Tarz</h3>
+                    <p class="text-gray-400 leading-relaxed font-sans">
+                        Siyah deri ceketten duruşuna kadar her detayı kusursuz bir rockstar/bad boy estetiğinin yansımasıdır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE AURA & COOLNESS ANALYZER -->
+    <section id="analyzer" class="py-20 px-4 relative z-10">
+        <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 rounded-3xl border border-neonBlue/40 shadow-neon-blue">
+            <div class="text-center mb-10">
+                <span class="text-neonBlue font-orbitron text-sm font-bold tracking-widest uppercase mb-2 block">&lt; INTERACTIVE SCANNER &gt;</span>
+                <h2 class="font-orbitron text-3xl md:text-5xl font-black text-white uppercase">AURA & COOLNESS ANALİZÖRÜ</h2>
+                <p class="font-rajdhani text-gray-300 text-lg mt-2">Tamer Belge ile aura seviyeni karşılaştırmaya hazır mısın?</p>
+            </div>
+
+            <form id="auraForm" onsubmit="analyzeAura(event)" class="space-y-6">
+                <div>
+                    <label class="block font-rajdhani font-bold text-lg text-gray-300 mb-2">Adın / Takma Adın</label>
+                    <input type="text" id="userName" required placeholder="Örn: Ahmet, Cesur Yürek..." class="w-full bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonBlue transition-colors font-sans">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-rajdhani font-bold text-lg text-gray-300 mb-2">Giyindiğin Tarz</label>
+                        <select id="styleSelect" class="w-full bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonBlue transition-colors font-sans">
+                            <option value="1">Siyah Deri Ceket & Güneş Gözlüğü</option>
+                            <option value="2">Takım Elbise</option>
+                            <option value="3">Spor / Casual</option>
+                            <option value="4">Pijama / Ev Hali</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-rajdhani font-bold text-lg text-gray-300 mb-2">Zor Bir Durumda Ne Yaparsın?</label>
+                        <select id="actionSelect" class="w-full bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonBlue transition-colors font-sans">
+                            <option value="1">Gülümser ve Doğrudan Üstüne Yürürüm</option>
+                            <option value="2">Mantıklı Bir Plan Yaparım</option>
+                            <option value="3">Sessizce Uzaklaşırım</option>
+                            <option value="4">Yardım Çağırırım</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full cyber-btn bg-gradient-to-r from-neonRed to-neonBlue text-white font-orbitron font-bold py-4 text-xl tracking-wider shadow-neon-red mt-4">
+                    AURA VE KARİZMAYI TARA
+                </button>
+            </form>
+
+            <!-- Result Box -->
+            <div id="resultBox" class="hidden mt-10 p-6 bg-black/80 rounded-2xl border border-neonGold shadow-neon-gold transition-all duration-500">
+                <div class="text-center">
+                    <h3 id="resultTitle" class="font-orbitron text-2xl font-bold text-neonGold mb-4">ANALİZ TAMAMLANDI</h3>
+                    
+                    <!-- Comparative Progress Bars -->
+                    <div class="space-y-4 max-w-lg mx-auto text-left font-rajdhani font-bold">
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>SENİN AURAN (<span id="displayName">SİZ</span>)</span>
+                                <span id="userAuraScore" class="text-neonBlue">12%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-3 overflow-hidden">
+                                <div id="userBar" class="bg-neonBlue h-full transition-all duration-1000" style="width: 12%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>TAMER BELGE AURASI</span>
+                                <span class="text-neonRed">1000% (Erişilemez)</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-3 overflow-hidden">
+                                <div class="bg-gradient-to-r from-neonRed via-neonGold to-neonBlue h-full w-full animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p id="resultText" class="font-sans text-gray-200 mt-6 text-lg italic">
+                        "Çaban takdire şayan dostum, ama Tamer Belge'nin aurasının yanında sadece küçük bir kıvılcımsın. Onun karizmasına ulaşmak imkansız!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAMER BELGE QUOTE GENERATOR / SOUNDBOARD -->
+    <section id="quotes" class="py-20 px-4 relative z-10 bg-black/50 border-t border-neonBlue/20">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white uppercase tracking-wider mb-4">
+                EFSANEVİ <span class="text-neonBlue">SÖZLER</span> & RACON
+            </h2>
+            <div class="w-24 h-1 bg-neonBlue mx-auto mb-10"></div>
+
+            <!-- Quote Display Card -->
+            <div class="glass-card p-8 md:p-12 rounded-3xl mb-8 relative border-neonBlue/50 shadow-neon-blue">
+                <i class="fa-solid fa-quote-left text-5xl text-neonBlue/30 absolute top-6 left-6"></i>
+                <i class="fa-solid fa-quote-right text-5xl text-neonBlue/30 absolute bottom-6 right-6"></i>
+                
+                <p id="quoteText" class="font-rajdhani font-bold text-2xl md:text-4xl text-white mb-6 min-h-[100px] flex items-center justify-center leading-snug">
+                    "Kurallar insanları sınırlamak içindir. Ben o sınırların ötesinde yaşarım."
+                </p>
+
+                <div id="quoteAuthor" class="font-orbitron text-neonRed font-bold text-lg tracking-widest uppercase">
+                    &mdash; TAMER BELGE
+                </div>
+            </div>
+
+            <!-- Interactive Sound Wave Equalizer Simulation -->
+            <div class="flex justify-center items-center gap-1.5 h-12 mb-8">
+                <span class="w-1.5 bg-neonRed rounded-full eq-bar h-full"></span>
+                <span class="w-1.5 bg-neonBlue rounded-full eq-bar h-3/4" style="animation-delay: 0.1s"></span>
+                <span class="w-1.5 bg-neonGold rounded-full eq-bar h-1/2" style="animation-delay: 0.2s"></span>
+                <span class="w-1.5 bg-neonRed rounded-full eq-bar h-full" style="animation-delay: 0.3s"></span>
+                <span class="w-1.5 bg-neonBlue rounded-full eq-bar h-2/3" style="animation-delay: 0.15s"></span>
+                <span class="w-1.5 bg-neonGold rounded-full eq-bar h-5/6" style="animation-delay: 0.25s"></span>
+            </div>
+
+            <button onclick="generateRandomQuote()" class="cyber-btn bg-neonBlue text-black hover:bg-white font-orbitron font-bold px-10 py-4 text-xl tracking-wider shadow-neon-blue">
+                YENİ RACON PATLAT <i class="fa-solid fa-bolt ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- BAD BOY PHOTO / GALLERY MATRIX -->
+    <section id="gallery" class="py-20 px-4 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white uppercase tracking-wider mb-4">
+                    KARİZMA <span class="text-neonGold">MATRİSİ</span>
+                </h2>
+                <div class="w-24 h-1 bg-neonGold mx-auto mb-4"></div>
+                <p class="font-rajdhani text-lg md:text-xl text-gray-400">
+                    Tamer Belge'nin ikonik duruşundan öne çıkan kareler
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Gallery Card 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-neonRed/30 hover:border-neonRed">
+                    <div class="relative h-80 overflow-hidden bg-gradient-to-br from-neutral-900 to-black flex items-center justify-center">
+                        <!-- Stylized Visual Graphic Placeholder -->
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neonRed/20 via-transparent to-transparent"></div>
+                        <i class="fa-solid fa-user-ninja text-8xl text-neonRed/40 group-hover:scale-125 group-hover:text-neonRed transition-all duration-500"></i>
+                        <div class="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-neonRed text-xs font-orbitron text-neonRed">
+                            GECE SÜRÜŞÜ
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-orbitron font-bold text-xl text-white mb-2">Gece Şehrin Sahibi</h3>
+                        <p class="text-gray-400 text-sm font-sans mb-4">Karanlık sokaklar ve motorun gürültüsü. Tamer şehirde devriyede.</p>
+                        <div class="flex justify-between items-center text-xs font-orbitron text-neonGold">
+                            <span>STİL: ROCKSTAR</span>
+                            <span>TEHLİKE: %99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-neonBlue/30 hover:border-neonBlue">
+                    <div class="relative h-80 overflow-hidden bg-gradient-to-br from-neutral-900 to-black flex items-center justify-center">
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neonBlue/20 via-transparent to-transparent"></div>
+                        <i class="fa-solid fa-glasses text-8xl text-neonBlue/40 group-hover:scale-125 group-hover:text-neonBlue transition-all duration-500"></i>
+                        <div class="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-neonBlue text-xs font-orbitron text-neonBlue">
+                            GÖZ TEMASI
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-orbitron font-bold text-xl text-white mb-2">Sessiz Dominasyon</h3>
+                        <p class="text-gray-400 text-sm font-sans mb-4">Güneş gözlüklerinin arkasından dünyayı izleyen keskin bakışlar.</p>
+                        <div class="flex justify-between items-center text-xs font-orbitron text-neonBlue">
+                            <span>GÜÇ: MAXIMUM</span>
+                            <span>ODAK: %100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-neonGold/30 hover:border-neonGold">
+                    <div class="relative h-80 overflow-hidden bg-gradient-to-br from-neutral-900 to-black flex items-center justify-center">
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neonGold/20 via-transparent to-transparent"></div>
+                        <i class="fa-solid fa-crown text-8xl text-neonGold/40 group-hover:scale-125 group-hover:text-neonGold transition-all duration-500"></i>
+                        <div class="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-neonGold text-xs font-orbitron text-neonGold">
+                            ZİRVE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-orbitron font-bold text-xl text-white mb-2">Efsanenin Doğuşu</h3>
+                        <p class="text-gray-400 text-sm font-sans mb-4">Herkes konuşur, Tamer Belge sadece başarır ve iz bırakır.</p>
+                        <div class="flex justify-between items-center text-xs font-orbitron text-neonRed">
+                            <span>AURA: 1000%</span>
+                            <span>STATUS: LEGEND</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-neonRed/20 bg-black relative z-10 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="font-orbitron font-black text-3xl text-white mb-4">
+                TAMER <span class="text-neonRed">BELGE</span>
+            </div>
+            <p class="font-rajdhani text-gray-500 text-lg mb-6">
+                Bu site Tamer Belge'nin durdurulamaz bad boy aurasına adanmıştır.
+            </p>
+            <div class="text-xs font-orbitron text-gray-600 uppercase tracking-widest">
+                &copy; 2026 TAMER BELGE FAN LEGEND CLUB &bull; TÜM HAKLAR ONA AİTTİR
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card px-6 py-4 rounded-xl border border-neonBlue shadow-neon-blue flex items-center gap-3 text-white font-rajdhani font-bold">
+            <i class="fa-solid fa-bolt text-neonBlue text-xl"></i>
+            <span id="toastMsg">Söz panoya kopyalandı!</span>
+        </div>
     </div>
-  </section>
 
-  <!-- Özellikler -->
-  <h2 class="section-title">TAMER BELGE GERÇEKLERİ</h2>
-  <div class="grid-container">
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Interactive Dynamic Background Particles Canvas
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-    <div class="card">
-      <div class="card-icon">⚡</div>
-      <h2>Yıkıcı Bakışlar</h2>
-      <p>Ortama girdiğinde göz teması kurmak cesaret ister. Bir bakışıyla tüm ilgiyi üzerine çeker, ortamın havasını anında değiştirir.</p>
-    </div>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-    <div class="card">
-      <div class="card-icon">👑</div>
-      <h2>Kendi Kuralları Var</h2>
-      <p>Sıradan kurallarla zaman kaybetmez. Trendleri takip etmez, kendisi trend oluşturur. Kendi yolunu kendisi çizer.</p>
-    </div>
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5;
+                this.color = Math.random() > 0.5 ? '#ff003c' : '#00f0ff';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-    <div class="card">
-      <div class="card-icon">🔥</div>
-      <h2>Saf Özgüven</h2>
-      <p>Yürümesi, konuşması, duruşu... Çaba sarf etmesine gerek kalmadan etrafına doğal bir liderlik ve karizma yayar.</p>
-    </div>
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
 
-  </div>
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
 
-  <!-- Racon Bölümü -->
-  <section class="quote-box">
-    <blockquote id="raconText">"Tamer Belge bir ortama girdiğinde ortam ona uyar, o ortama değil."</blockquote>
-    <button class="btn-action" onclick="yeniRacon()">YENİ RACON YÜKLE 🔥</button>
-  </section>
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
 
-  <footer>
-    DESIGNED FOR THE ONE AND ONLY: TAMER BELGE © 2026
-  </footer>
+            // Connect nearby particles with glow lines
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
-  <script>
-    const raconlar = [
-      '"Tamer Belge bir ortama girdiğinde ortam ona uyar, o ortama değil."',
-      '"Sessizliği bile etraftakileri tedirgin etmeye yeter."',
-      '"Kural tanımamak onun doğasında var."',
-      '"Aura sözlük anlamı: Tamer Belge."',
-      '"Ona yetişmek için koşma, sadece izle."'
-    ];
+                    if (dist < 100) {
+                        ctx.strokeStyle = particles[i].color;
+                        ctx.globalAlpha = 0.15 * (1 - dist / 100);
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1.0;
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
 
-    function yeniRacon() {
-      const random = Math.floor(Math.random() * raconlar.length);
-      document.getElementById('raconText').innerText = raconlar[random];
-    }
-  </script>
+        // Tamer Belge Quotes Array
+        const quotes = [
+            "Kurallar insanları sınırlamak içindir. Ben o sınırların ötesinde yaşarım.",
+            "Aura satın alınmaz, doğuştan gelir. Tamer Belge farkı budur.",
+            "Tehlike bana geri adım attırmaz, sadece oyunu daha eğlenceli kılar.",
+            "Herkes konuşur, ben sadece tek bir bakışımla noktayı koyarım.",
+            "Benim olduğum yerde kuralları başkaları yazamaz.",
+            "Rüzgar ne kadar sert eserse essin, fırtınayı ben yönetirim.",
+            "Sıradan olmak kolaydır. Tamer Belge olmak ise efsane gerektirir."
+        ];
+
+        function generateRandomQuote() {
+            const quoteText = document.getElementById('quoteText');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            
+            // Subtle transition effect
+            quoteText.style.opacity = '0';
+            quoteText.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                quoteText.innerText = `"${quotes[randomIndex]}"`;
+                quoteText.style.opacity = '1';
+                quoteText.style.transform = 'translateY(0)';
+                quoteText.style.transition = 'all 0.4s ease';
+                
+                showToast("Yeni Racon Patlatıldı!");
+            }, 200);
+        }
+
+        // Interactive Aura Analyzer Logic
+        function analyzeAura(event) {
+            event.preventDefault();
+            const name = document.getElementById('userName').value || "Gizemli Kişi";
+            const resultBox = document.getElementById('resultBox');
+            const displayName = document.getElementById('displayName');
+            const userAuraScore = document.getElementById('userAuraScore');
+            const userBar = document.getElementById('userBar');
+            const resultText = document.getElementById('resultText');
+
+            // Generate a random aura score for user (always low compared to Tamer's 1000%)
+            const score = Math.floor(Math.random() * 25) + 5; // Between 5% and 30%
+
+            displayName.innerText = name.toUpperCase();
+            userAuraScore.innerText = score + "%";
+            userBar.style.width = score + "%";
+
+            const responses = [
+                `Çaban takdire şayan ${name}, ama Tamer Belge'nin aurasının yanında sadece küçük bir kıvılcımsın!`,
+                `${name}, karizman fena değil ama Tamer Belge'nin kapsama alanına girdiğin an enerjin sıfırlanır!`,
+                `Sistem tarandı: ${name} aura seviyesi %${score}. Tamer Belge ise %1000 ile ulaşılmaz zirvede!`
+            ];
+
+            resultText.innerText = `"${responses[Math.floor(Math.random() * responses.length)]}"`;
+
+            resultBox.classList.remove('hidden');
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
